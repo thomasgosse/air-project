@@ -31,6 +31,8 @@ header {
 
   .title {
     display: flex;
+    justify-content: center;
+    align-items: center;
     h1 {
       margin-right: 50px;
     }

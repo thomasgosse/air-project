@@ -52,6 +52,7 @@ export default defineComponent({
 
   table {
     flex: 1;
+    -webkit-flex: 1 1 auto;
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 14px;
