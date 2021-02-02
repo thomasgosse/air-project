@@ -21,9 +21,19 @@ export default defineComponent({
   padding: 30px;
 
   &__title {
-    font-size: 40px;
+    font-size: var(--title-font-size);
     font-weight: 700;
-    color: #79be1e;
+    color: var(--primary);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .page {
+    padding: 15px;
+
+    &__title {
+      text-align: center;
+    }
   }
 }
 </style>

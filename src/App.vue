@@ -37,6 +37,14 @@ export default defineComponent({
 body,
 html {
   margin: 0;
-  background: rgb(253, 253, 246);
+  background: var(--background);
+
+  --background: rgb(253, 253, 246);
+  --primary: #79be1e;
+  --title-font-size: 40px;
+
+  @media screen and (max-width: 600px) {
+    --title-font-size: 30px;
+  }
 }
 </style>

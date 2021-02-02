@@ -50,7 +50,7 @@ header {
     padding: 10px;
 
     &.router-link-exact-active {
-      color: #79be1e;
+      color: var(--primary);
     }
   }
 }

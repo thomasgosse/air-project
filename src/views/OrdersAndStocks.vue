@@ -1,16 +1,18 @@
 <template>
   <Page title="Orders and Stocks">
     <div class="page__content">
-      <order-table
-        title="Orders"
-        :headers="['#', 'Customers', 'Products']"
-        :items="orders"
-      ></order-table>
-      <stock-table
-        title="Stock"
-        :headers="['Products', 'Villeneuve', 'Roncq', 'Lesquin']"
-        :items="stocks"
-      ></stock-table>
+      <div class="page__content--wrapper">
+        <order-table
+          title="Orders"
+          :headers="['#', 'Customers', 'Products']"
+          :items="orders"
+        ></order-table>
+        <stock-table
+          title="Stock"
+          :headers="['Products', 'Villeneuve', 'Roncq', 'Lesquin']"
+          :items="stocks"
+        ></stock-table>
+      </div>
     </div>
   </Page>
 </template>
@@ -39,12 +41,44 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .page__content {
-  display: flex;
+  overflow-x: auto;
+
+  &--wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
 
   table {
-    margin: auto;
+    flex: 1;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 14px;
+    font-family: sans-serif;
+
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0 20px 40px 10px;
+
+    th {
+      background-color: var(--primary);
+      color: var(--background);
+      text-align: left;
+    }
+
+    th,
+    td {
+      padding: 12px 15px;
+    }
+
+    tbody tr:nth-of-type(even) {
+      background-color: #f3f3f3;
+    }
+
+    tbody tr:last-of-type {
+      border-bottom: 2px solid var(--primary);
+    }
   }
 }
 

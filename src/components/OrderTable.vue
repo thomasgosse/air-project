@@ -1,15 +1,19 @@
 <template>
   <table>
-    <tr>
-      <th v-for="header in headers" :key="header">
-        {{ header }}
-      </th>
-    </tr>
-    <tr v-for="item in items" :key="item.id">
-      <th>{{ item.id }}</th>
-      <th>{{ item.customerId }}</th>
-      <th>{{ formatBasket(item.basket) }}</th>
-    </tr>
+    <thead>
+      <tr>
+        <th v-for="header in headers" :key="header">
+          {{ header }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="item in items" :key="item.id">
+        <td>{{ item.id }}</td>
+        <td>{{ item.customerId }}</td>
+        <td>{{ formatBasket(item.basket) }}</td>
+      </tr>
+    </tbody>
   </table>
 </template>
 
@@ -18,7 +22,7 @@ import { Order, Item } from "@/types";
 import { defineComponent, PropType } from "vue";
 
 export default defineComponent({
-  name: "Page",
+  name: "OrderTable",
   props: {
     headers: Array as PropType<string[]>,
     items: Array as PropType<Order[]>

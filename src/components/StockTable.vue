@@ -1,17 +1,21 @@
 <template>
   <table>
-    <tr>
-      <th>Products</th>
-      <th v-for="store in stores" :key="store">
-        {{ store }}
-      </th>
-    </tr>
-    <tr v-for="productStock in getProductStocks()" :key="productStock.id">
-      <th>{{ productStock.id }}</th>
-      <th v-for="stock in productStock.stocksByStore" :key="stock">
-        {{ stock }}
-      </th>
-    </tr>
+    <thead>
+      <tr>
+        <th>Products</th>
+        <th v-for="store in stores" :key="store">
+          {{ store }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="productStock in getProductStocks()" :key="productStock.id">
+        <td>{{ productStock.id }}</td>
+        <td v-for="stock in productStock.stocksByStore" :key="stock">
+          {{ stock }}
+        </td>
+      </tr>
+    </tbody>
   </table>
 </template>
 
@@ -31,7 +35,7 @@ type ProductStock = {
 };
 
 export default defineComponent({
-  name: "Page",
+  name: "StockTable",
   props: {
     items: {
       type: Array as PropType<Stock[]>,
