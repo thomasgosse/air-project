@@ -1,7 +1,7 @@
 <template>
   <Page title="Orders and Stocks">
-    <div class="page__content">
-      <div class="page__content--wrapper">
+    <div class="orderstock__content">
+      <div class="orderstock__content--wrapper">
         <order-table
           title="Orders"
           :headers="['#', 'Customers', 'Products']"
@@ -42,50 +42,26 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.page__content {
+.orderstock__content {
   overflow-x: auto;
 
   &--wrapper {
     display: flex;
     flex-wrap: wrap;
-  }
 
-  table {
-    flex: 1;
-    -webkit-flex: 1 1 auto;
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 14px;
-    font-family: sans-serif;
-
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 0 20px 40px 10px;
-
-    th {
-      background-color: var(--primary);
-      color: var(--background);
-      text-align: left;
-    }
-
-    th,
-    td {
-      padding: 12px 15px;
-    }
-
-    tbody tr:nth-of-type(even) {
-      background-color: #f3f3f3;
-    }
-
-    tbody tr:last-of-type {
-      border-bottom: 2px solid var(--primary);
+    table {
+      margin: 0 20px 40px 10px;
     }
   }
 }
 
 @media screen and (max-width: 1000px) {
-  .page__content {
+  .orderstock__content {
     flex-direction: column;
+
+    table {
+      margin: 0 0 40px 0;
+    }
   }
 }
 </style>

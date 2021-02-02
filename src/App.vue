@@ -19,6 +19,7 @@ export default defineComponent({
     store.dispatch("fetchDrones");
     store.dispatch("fetchCustomers");
     store.dispatch("fetchStocks");
+    store.dispatch("fetchPlans");
   }
 });
 </script>
@@ -46,5 +47,60 @@ html {
   @media screen and (max-width: 600px) {
     --title-font-size: 30px;
   }
+}
+
+table {
+  flex: 1;
+  -webkit-flex: 1 1 auto;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 14px;
+  font-family: sans-serif;
+
+  border-radius: 8px;
+  overflow: hidden;
+
+  th {
+    background-color: var(--primary);
+    color: var(--background);
+    text-align: left;
+  }
+
+  th,
+  td {
+    padding: 12px 15px;
+  }
+
+  tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+
+  tbody tr:last-of-type {
+    border-bottom: 2px solid var(--primary);
+  }
+}
+
+button {
+  margin: 0;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 8px 20px;
+  min-height: 48px;
+  min-width: 48px;
+  height: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: all ease 200ms;
+  color: var(--primary);
+  border-color: var(--primary);
+  background-color: var(--background);
+}
+
+button:hover,
+button:active,
+button:focus {
+  background-color: #cbe3b5;
 }
 </style>
