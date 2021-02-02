@@ -28,3 +28,10 @@ export interface Stock {
   y: number;
   stock: Item[];
 }
+
+export interface Plan {
+  drone: Drone;
+  customerId: string;
+  productId: string;
+  store: string;
+}

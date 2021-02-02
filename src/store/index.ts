@@ -1,5 +1,5 @@
 import { createStore, Store } from "vuex";
-import { Customer, Drone, Order, Stock } from "@/types";
+import { Customer, Drone, Order, Stock, Plan } from "@/types";
 import { getItem } from "@/services/local-storage";
 
 export interface State {
@@ -7,6 +7,7 @@ export interface State {
   stocks: Stock[];
   customers: Customer[];
   drones: Drone[];
+  plans: Plan[];
 }
 
 export const store = createStore<State>({
@@ -14,20 +15,24 @@ export const store = createStore<State>({
     orders: [],
     stocks: [],
     customers: [],
-    drones: []
+    drones: [],
+    plans: []
   },
   actions: {
     fetchOrders({ state }) {
-      state.orders = getItem<Order[]>("orders");
+      state.orders = getItem<Order[]>("orders") || [];
     },
     fetchStocks({ state }) {
-      state.stocks = getItem<Stock[]>("stocks");
+      state.stocks = getItem<Stock[]>("stocks") || [];
     },
     fetchCustomers({ state }) {
-      state.customers = getItem<Customer[]>("customers");
+      state.customers = getItem<Customer[]>("customers") || [];
     },
     fetchDrones({ state }) {
-      state.drones = getItem<Drone[]>("drones");
+      state.drones = getItem<Drone[]>("drones") || [];
+    },
+    fetchPlans({ state }) {
+      state.plans = getItem<Plan[]>("plans") || [];
     }
   }
 });
