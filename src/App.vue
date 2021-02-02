@@ -6,11 +6,19 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Header from "@/components/Header.vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "Home",
   components: {
     Header
+  },
+  setup() {
+    const store = useStore();
+    store.dispatch("fetchOrders");
+    store.dispatch("fetchDrones");
+    store.dispatch("fetchCustomers");
+    store.dispatch("fetchStocks");
   }
 });
 </script>

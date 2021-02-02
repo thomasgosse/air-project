@@ -15,7 +15,7 @@
       <h1>ir Project</h1>
     </div>
 
-    <div>
+    <div class="links">
       <router-link to="/">Plans</router-link> |
       <router-link to="/drones">Drones</router-link> |
       <router-link to="/orders-and-stocks">Orders and stocks</router-link>
@@ -40,6 +40,10 @@ header {
     width: 60px;
   }
 
+  .links {
+    text-align: center;
+  }
+
   a {
     font-weight: bold;
     color: #2c3e50;
@@ -51,12 +55,16 @@ header {
   }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 600px) {
   header {
     flex-direction: column;
 
     .title > h1 {
       margin-right: 0;
+    }
+
+    a {
+      padding: 3px;
     }
   }
 }

@@ -4,7 +4,7 @@ export interface Customer {
   y: number;
 }
 
-interface Item {
+export interface Item {
   productId: string;
   quantity: number;
 }
@@ -22,7 +22,7 @@ export interface Drone {
   autonomy: number;
 }
 
-export interface Store {
+export interface Stock {
   id: string;
   x: number;
   y: number;
