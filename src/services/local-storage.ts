@@ -3,10 +3,10 @@ export function setItem(key: string, item: any): void {
   localStorage.setItem(key, value);
 }
 
-export function getItem<T>(key: string): T {
+export function getItem<T>(key: string): T | null {
   const value = localStorage.getItem(key);
   if (!value) {
-    throw new Error(`Value for key ${key} does not exists`);
+    return null;
   }
   const item = JSON.parse(value) as T;
   return item;
