@@ -1,40 +1,28 @@
 <template>
   <div class="modal">
-    <Page title="Add plan">
-      <div class="modal__form">
-        <input />
-        <input />
-        <button @click="closeModal">close</button>
-      </div>
+    <button class="modal__close" @click="closeModal">X</button>
+    <Page title="Create plan">
+      <plan-form :closeModal="closeModal"></plan-form>
     </Page>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
-import { useStore } from "vuex";
-import { State } from "@/store/index";
+import { defineComponent } from "vue";
 import Page from "./Page.vue";
+import PlanForm from "./PlanForm.vue";
 
 export default defineComponent({
   name: "PlanModal",
   components: {
-    Page
+    Page,
+    PlanForm
   },
   props: {
     closeModal: {
       type: Function,
       required: true
     }
-  },
-  setup() {
-    const store = useStore<State>();
-    const drones = computed(() => store.state.drones);
-    const orders = computed(() => store.state.orders);
-    const customers = computed(() => store.state.customers);
-    const stocks = computed(() => store.state.stocks);
-    const plans = computed(() => store.state.plans);
-    return { drones, orders, customers, stocks, plans };
   }
 });
 </script>
@@ -50,10 +38,10 @@ export default defineComponent({
   justify-content: center;
   background: var(--background);
 
-  &__form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  &__close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
   }
 }
 </style>

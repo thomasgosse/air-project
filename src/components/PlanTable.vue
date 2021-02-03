@@ -36,10 +36,10 @@
         v-for="plan in plans"
         :key="plan.customerId + plan.productId + plan.drone.autonomy"
       >
-        <td>{{ plan.drone.id }}</td>
-        <td>{{ plan.customerId }}</td>
-        <td>{{ plan.productId }}</td>
+        <td>{{ plan.drone }}</td>
         <td>{{ plan.store }}</td>
+        <td>{{ plan.productId }}</td>
+        <td>{{ plan.customerId }}</td>
       </tr>
     </tbody>
   </table>
