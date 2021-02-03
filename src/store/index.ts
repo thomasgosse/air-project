@@ -54,6 +54,7 @@ export const store = createStore<State>({
       // Update drone autonomy
       const i3 = state.drones.findIndex(drone => drone.id === draftPlan.drone);
       state.drones[i3].autonomy += -energyCost;
+      // update drone position: equal to customer position
 
       // Update store stock
       const i4 = state.stores.findIndex(store => store.id === draftPlan.store);
