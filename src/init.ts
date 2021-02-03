@@ -5,7 +5,7 @@ import stores from "../data/stores.json";
 
 import { Customer, Drone, Order, Store } from "./types";
 
-const keys = ["customers", "drones", "orders", "stocks"];
+const keys = ["customers", "drones", "orders", "stores"];
 
 type Datas = {
   customers: Customer[];
