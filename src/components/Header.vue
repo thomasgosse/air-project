@@ -18,7 +18,7 @@
     <div class="links">
       <router-link to="/">Plans</router-link> |
       <router-link to="/drones">Drones</router-link> |
-      <router-link to="/orders-and-stocks">Orders and stocks</router-link>
+      <router-link to="/orders-and-stores">Orders and stores</router-link>
     </div>
   </header>
 </template>
