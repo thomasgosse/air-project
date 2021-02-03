@@ -1,9 +1,9 @@
 import customers from "../data/customers.json";
 import drones from "../data/drones.json";
 import orders from "../data/orders.json";
-import stocks from "../data/stocks.json";
+import stores from "../data/stores.json";
 
-import { Customer, Drone, Order, Stock } from "./types";
+import { Customer, Drone, Order, Store } from "./types";
 
 const keys = ["customers", "drones", "orders", "stocks"];
 
@@ -11,10 +11,10 @@ type Datas = {
   customers: Customer[];
   drones: Drone[];
   orders: Order[];
-  stocks: Stock[];
+  stores: Store[];
 };
 
-const datas: Datas = { customers, drones, orders, stocks };
+const datas: Datas = { customers, drones, orders, stores };
 
 export default function init(): void {
   keys.forEach(key => {

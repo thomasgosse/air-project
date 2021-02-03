@@ -18,7 +18,7 @@ export default defineComponent({
     store.dispatch("fetchOrders");
     store.dispatch("fetchDrones");
     store.dispatch("fetchCustomers");
-    store.dispatch("fetchStocks");
+    store.dispatch("fetchStores");
     store.dispatch("fetchPlans");
   }
 });
@@ -42,7 +42,9 @@ html {
 
   --background: rgb(253, 253, 246);
   --primary: #79be1e;
+  --secondary: #cbe3b5;
   --title-font-size: 40px;
+  --default-radius: 4px;
 
   @media screen and (max-width: 600px) {
     --title-font-size: 30px;
@@ -89,7 +91,7 @@ button {
   min-width: 48px;
   height: 0;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: var(--default-radius);
   text-align: center;
   border: 2px solid transparent;
   transition: all ease 200ms;
@@ -101,6 +103,6 @@ button {
 button:hover,
 button:active,
 button:focus {
-  background-color: #cbe3b5;
+  background-color: var(--secondary);
 }
 </style>

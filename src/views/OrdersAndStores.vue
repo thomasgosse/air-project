@@ -8,9 +8,9 @@
           :items="orders"
         ></order-table>
         <stock-table
-          title="Stock"
+          title="Stores"
           :headers="['Products', 'Villeneuve', 'Roncq', 'Lesquin']"
-          :items="stocks"
+          :items="stores"
         ></stock-table>
       </div>
     </div>
@@ -26,7 +26,7 @@ import OrderTable from "@/components/OrderTable.vue";
 import StockTable from "@/components/StockTable.vue";
 
 export default defineComponent({
-  name: "OrdersAndStocks",
+  name: "OrdersAndStores",
   components: {
     Page,
     "order-table": OrderTable,
@@ -34,9 +34,9 @@ export default defineComponent({
   },
   setup() {
     const store = useStore<State>();
-    const stocks = computed(() => store.state.stocks);
+    const stores = computed(() => store.state.stores);
     const orders = computed(() => store.state.orders);
-    return { stocks, orders };
+    return { stores, orders };
   }
 });
 </script>

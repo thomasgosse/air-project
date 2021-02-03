@@ -22,7 +22,7 @@ export interface Drone {
   autonomy: number;
 }
 
-export interface Stock {
+export interface Store {
   id: string;
   x: number;
   y: number;
@@ -30,7 +30,7 @@ export interface Stock {
 }
 
 export interface Plan {
-  drone: Drone;
+  drone: string;
   customerId: string;
   productId: string;
   store: string;

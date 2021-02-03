@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { Stock } from "@/types";
+import { Store } from "@/types";
 import { defineComponent, PropType } from "vue";
 
 type Product = {
@@ -38,7 +38,7 @@ export default defineComponent({
   name: "StockTable",
   props: {
     items: {
-      type: Array as PropType<Stock[]>,
+      type: Array as PropType<Store[]>,
       required: true
     }
   },
