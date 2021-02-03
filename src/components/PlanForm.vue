@@ -59,7 +59,12 @@
         :disabled="!isDroneAvailable(drone)"
         required
       >
-        {{ drone.id }} {{ isDroneAvailable(drone) ? "" : "- no more autonomy" }}
+        {{ drone.id }}
+        {{
+          isDroneAvailable(drone)
+            ? `- use ${getEnergyCost(drone).toFixed(2)}% of battery`
+            : "- not enough autonomy"
+        }}
       </option>
     </select>
 
