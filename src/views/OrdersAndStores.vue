@@ -4,7 +4,7 @@
       <div class="orderstock__content--wrapper">
         <order-table
           title="Orders"
-          :headers="['#', 'Customers', 'Products']"
+          :headers="['#', 'Customers', 'Products (left to deliver)']"
           :items="orders"
         ></order-table>
         <stock-table
