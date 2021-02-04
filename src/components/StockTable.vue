@@ -9,7 +9,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="productStock in getProductStocks()" :key="productStock.id">
+      <tr
+        v-for="(productStock, i) in getProductStocks()"
+        :key="productStock.id"
+        :data-cy="`row-${i + 1}`"
+      >
         <td>{{ productStock.id }}</td>
         <td v-for="stock in productStock.stocksByStore" :key="stock">
           {{ stock }}

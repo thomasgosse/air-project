@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="item in items" :key="item.id">
+      <tr v-for="(item, i) in items" :key="item.id" :data-cy="`row-${i + 1}`">
         <td>{{ item.id }}</td>
         <td>{{ item.customerId }}</td>
         <td>{{ formatBasket(item.basket) }}</td>

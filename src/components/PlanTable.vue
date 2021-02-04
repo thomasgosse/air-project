@@ -14,7 +14,9 @@
             <p class="empty-table__content--title">
               There are no flight plans for now...
             </p>
-            <button @click="openModal">Create one</button>
+            <button @click="openModal" data-cy="openModalBtn">
+              Create one
+            </button>
             <img
               class="empty-table__image"
               src="../assets/undraw-drone-delivery.svg"
@@ -33,8 +35,9 @@
         </td>
       </tr>
       <tr
-        v-for="plan in plans"
+        v-for="(plan, i) in plans"
         :key="plan.customerId + plan.productId + plan.drone.autonomy"
+        :data-cy="`row-${i + 1}`"
       >
         <td>{{ plan.drone }}</td>
         <td>{{ plan.store }}</td>

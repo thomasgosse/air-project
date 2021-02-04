@@ -1,7 +1,12 @@
 <template>
   <form @submit="submit">
     <label>Pick an order</label>
-    <select v-model="selectedOrder" @change="resetAll" required>
+    <select
+      v-model="selectedOrder"
+      @change="resetAll"
+      required
+      data-cy="sOrder"
+    >
       <option disabled value="_">Pick an order</option>
       <option
         v-for="order in orders"
@@ -18,6 +23,7 @@
       :disabled="!selectedOrder.id"
       @change="resetStoreDrone"
       required
+      data-cy="sItem"
     >
       <option disabled value="_">Product from {{ selectedOrder.id }}</option>
       <option
@@ -36,6 +42,7 @@
       :disabled="!selectedItem"
       @change="resetDrone"
       required
+      data-cy="sStore"
     >
       <option disabled value="_">Pick a store</option>
       <option
@@ -50,7 +57,12 @@
     </select>
 
     <label>Chose the delivery drone</label>
-    <select v-model="selectedDrone" :disabled="!selectedStore" required>
+    <select
+      v-model="selectedDrone"
+      :disabled="!selectedStore"
+      required
+      data-cy="sDrone"
+    >
       <option disabled value="_">Pick the delivery drone</option>
       <option
         v-for="drone in drones"
@@ -81,6 +93,7 @@
       >
     </p>
     <button type="submit">Create</button>
+    <span class="error">{{ errorMessage }}</span>
   </form>
 </template>
 
@@ -106,7 +119,8 @@ export default defineComponent({
       selectedOrder: { id: "", customerId: "" },
       selectedItem: "",
       selectedDrone: { id: "", energyCost: 0 },
-      selectedStore: ""
+      selectedStore: "",
+      errorMessage: ""
     };
   },
   computed: {
@@ -135,24 +149,29 @@ export default defineComponent({
   methods: {
     async submit(e: Event) {
       e.preventDefault();
-      this.createPlan(
-        this.draftPlan,
-        this.selectedOrder.id,
-        this.selectedDrone.energyCost
-      );
-      this.closeModal();
+      this.errorMessage = "";
+      try {
+        this.createPlan(
+          this.draftPlan,
+          this.selectedOrder.id,
+          this.selectedDrone.energyCost
+        );
+        this.closeModal();
+      } catch (e) {
+        this.errorMessage = "An error occured: " + e.message;
+      }
     },
     resetAll() {
       this.selectedItem = "";
-      this.selectedStore = "";
-      this.selectedDrone = { id: "", energyCost: 0 };
+      this.resetStoreDrone();
     },
     resetStoreDrone() {
       this.selectedStore = "";
-      this.selectedDrone = { id: "", energyCost: 0 };
+      this.resetDrone();
     },
     resetDrone() {
       this.selectedDrone = { id: "", energyCost: 0 };
+      this.errorMessage = "";
     },
     getBasketItems(orderId: string): Item[] {
       const order = this.orders.find(order => order.id === orderId);
@@ -190,12 +209,17 @@ form {
   }
 
   select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
     width: 100%;
     padding: 10px;
     border-radius: var(--default-radius);
     background: var(--background);
     border-width: 2px;
     margin-bottom: 15px;
+
+    background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+PC9zdmc+)
+      no-repeat 95% 50%;
 
     &:enabled {
       border-color: var(--secondary);
@@ -206,6 +230,13 @@ form {
     font-weight: 400;
     margin-bottom: 5px;
     font-size: 15px;
+  }
+
+  .error {
+    margin-top: 5px;
+    text-align: center;
+    font-weight: 500;
+    color: red;
   }
 }
 
