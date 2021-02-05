@@ -4,9 +4,10 @@ import orders from "../../data/orders.json";
 import stores from "../../data/stores.json";
 
 import actions from "@/store/actions";
-import { getItem } from "@/services/local-storage";
+import { getItem, storeAll } from "@/services/local-storage";
 import { Plan } from "@/types";
 import { State } from "@/store";
+
 jest.mock("@/services/local-storage", () => {
   return {
     getItem: jest
@@ -18,7 +19,8 @@ jest.mock("@/services/local-storage", () => {
       // eslint-disable-next-line
       .mockReturnValueOnce(require("../../data/orders.json"))
       // eslint-disable-next-line
-      .mockReturnValueOnce(require("../../data/stores.json"))
+      .mockReturnValueOnce(require("../../data/stores.json")),
+    storeAll: jest.fn()
   };
 });
 
@@ -61,6 +63,8 @@ describe("Fetch actions should return data from local storage service", () => {
 });
 
 describe("Create plan feature", () => {
+  afterEach(() => jest.clearAllMocks());
+
   const state = {
     customers,
     drones,
@@ -99,6 +103,12 @@ describe("Create plan feature", () => {
 
     const store = state.stores.find(s => s.id === draftPlan.store);
     expect(store?.stock[0].quantity).toEqual(9);
+
+    expect(storeAll).toHaveBeenCalledTimes(1);
+    expect(storeAll).toHaveBeenLastCalledWith(
+      [state.customers, state.drones, state.orders, state.plans, state.stores],
+      ["customers", "drones", "orders", "plans", "stores"]
+    );
   });
 
   it("Should throw an error if a data does not match, AND not update state", () => {
@@ -119,6 +129,7 @@ describe("Create plan feature", () => {
     } catch (e) {
       expect(e.message).toBe("NOT_DRONE could not be found");
       expect(state).toEqual(JSON.parse(tmpState));
+      expect(storeAll).toHaveBeenCalledTimes(0);
     }
   });
 });
