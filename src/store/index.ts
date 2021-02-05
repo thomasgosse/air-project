@@ -21,11 +21,13 @@ export const store = createStore<State>({
   actions,
   getters: {
     ordersEmptyItemFiltered(state): Order[] {
-      return state.orders.map(order => ({
-        customerId: order.customerId,
-        id: order.id,
-        basket: order.basket.filter(item => item.quantity > 0)
-      }));
+      return state.orders
+        .map(order => ({
+          customerId: order.customerId,
+          id: order.id,
+          basket: order.basket.filter(item => item.quantity > 0)
+        }))
+        .filter(order => order.basket.length > 0);
     }
   }
 });

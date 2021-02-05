@@ -1,4 +1,4 @@
-import { getItem } from "@/services/local-storage";
+import { getItem, storeAll } from "@/services/local-storage";
 import { Customer, Drone, Order, Store, Plan } from "@/types";
 import { State } from "./index";
 
@@ -74,5 +74,10 @@ export default {
     state.stores[indexStore].stock[indexStock].quantity += -1;
 
     state.plans.push(draftPlan);
+
+    storeAll(
+      [state.customers, state.drones, state.orders, state.plans, state.stores],
+      ["customers", "drones", "orders", "plans", "stores"]
+    );
   }
 };

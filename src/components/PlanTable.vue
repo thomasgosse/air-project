@@ -30,8 +30,15 @@
     </tbody>
     <tbody v-else>
       <tr>
-        <td colspan="4">
+        <td>
           <button @click="openModal">+ Add plan</button>
+        </td>
+        <td></td>
+        <td></td>
+        <td class="controls__delete">
+          <button @click="reset" class="controls__delete--btn">
+            Reset all
+          </button>
         </td>
       </tr>
       <tr
@@ -51,6 +58,7 @@
 <script lang="ts">
 import { Plan } from "@/types";
 import { defineComponent, PropType } from "vue";
+import { deleteAll } from "@/services/local-storage";
 
 export default defineComponent({
   name: "PlanTable",
@@ -68,6 +76,11 @@ export default defineComponent({
     return {
       headers: ["Drones", "Stores", "Produts", "Customers"]
     };
+  },
+  methods: {
+    reset() {
+      deleteAll();
+    }
   }
 });
 </script>
@@ -91,6 +104,22 @@ export default defineComponent({
   &__image {
     max-width: 100%;
     max-height: 400px;
+  }
+}
+
+.controls__delete {
+  display: flex;
+  justify-content: flex-end;
+
+  &--btn {
+    border-color: red;
+    color: red;
+  }
+
+  &--btn:hover,
+  &--btn:active,
+  &--btn:focus {
+    background-color: rgb(230, 139, 139);
   }
 }
 </style>

@@ -11,3 +11,14 @@ export function getItem<T>(key: string): T | null {
   const item = JSON.parse(value) as T;
   return item;
 }
+
+export function storeAll(items: any[], keys: string[]): void {
+  keys.forEach((key, i) => {
+    setItem(key, items[i]);
+  });
+}
+
+export function deleteAll(): void {
+  Object.keys(localStorage).forEach(key => localStorage.removeItem(key));
+  document.location.reload();
+}
